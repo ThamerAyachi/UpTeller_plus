@@ -5,7 +5,7 @@ import { Text, View, Image } from "react-native";
 export default function Card(props) {
 	return (
 		<TailwindProvider>
-			<View className="bg-white my-3 rounded-md overflow-hidden">
+			<View className="bg-white my-3 rounded-md overflow-hidden shadow">
 				<Image
 					source={{
 						uri: props.img,

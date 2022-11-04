@@ -10,14 +10,13 @@ export default function NewsScreen(props) {
 	let newArticles = [];
 
 	articles.map((a, i) => {
-		if (i < 5) {
+		if (i < 10) {
 			newArticles.push(a);
 		}
 	});
-	const data = [1, 2, 3, 4, 5];
 	return (
 		<TailwindProvider>
-			<View className="p-3 mb-10">
+			<ScrollView className="p-3 ">
 				{newArticles.length < 1 ? (
 					<Text>osber</Text>
 				) : (
@@ -27,7 +26,7 @@ export default function NewsScreen(props) {
 								That's what i can found
 							</Text>
 						</View>
-						<ScrollView>
+						<View>
 							{newArticles.map((i) => {
 								return (
 									<Card
@@ -38,10 +37,10 @@ export default function NewsScreen(props) {
 									/>
 								);
 							})}
-						</ScrollView>
+						</View>
 					</View>
 				)}
-			</View>
+			</ScrollView>
 		</TailwindProvider>
 	);
 }

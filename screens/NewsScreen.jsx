@@ -34,6 +34,7 @@ export default function NewsScreen(props) {
 										img={i.media}
 										title={i.title}
 										author={i.author}
+										date={i.published_date}
 										onPress={() =>
 											props.navigation.navigate("Article", { article: i })
 										}

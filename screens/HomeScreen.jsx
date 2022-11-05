@@ -10,10 +10,10 @@ export default function HomeScreen(props) {
 	const getData = async () => {
 		try {
 			const data = await fetch(
-				"https://api.newscatcherapi.com/v2/search?q=fedora linux",
+				"https://api.newscatcherapi.com/v2/search?q=Tesla",
 				{
 					headers: {
-						"x-api-key": "UdmS-SoM-KElDeKpkYHB8MosXXMFsCx3ZlH6ILPoULI",
+						"x-api-key": "i5rUvEN5-QmGcXesk4aUSl1AMwFHBcXrIL5dDYQJ9Yw",
 					},
 				}
 			);

@@ -8,12 +8,12 @@ export default function NewsScreen(props) {
 	Speech.speak("That's what i can found", { language: "en-US" });
 	const { articles } = props.route.params;
 	let newArticles = [];
-
 	articles.map((a, i) => {
-		if (i < 20) {
+		if (i < 20 && articles.length >= i) {
 			newArticles.push(a);
 		}
 	});
+
 	return (
 		<TailwindProvider>
 			<ScrollView className="p-3 ">
@@ -34,6 +34,9 @@ export default function NewsScreen(props) {
 										img={i.media}
 										title={i.title}
 										author={i.author}
+										onPress={() =>
+											props.navigation.navigate("Article", { article: i })
+										}
 									/>
 								);
 							})}

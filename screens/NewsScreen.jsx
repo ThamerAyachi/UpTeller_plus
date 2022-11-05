@@ -16,13 +16,13 @@ export default function NewsScreen(props) {
 
 	return (
 		<TailwindProvider>
-			<ScrollView className="p-3 ">
+			<ScrollView className="p-3 bg-dr">
 				{newArticles.length < 1 ? (
-					<Text>osber</Text>
+					<Text className="text-gray-400">osber</Text>
 				) : (
 					<View className="mb-14">
 						<View className="">
-							<Text className="text-2xl py-5 text-gray-800">
+							<Text className="text-2xl py-5 text-gray-400">
 								That's what i can found
 							</Text>
 						</View>

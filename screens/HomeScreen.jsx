@@ -42,14 +42,14 @@ export default function HomeScreen(props) {
 
 	return (
 		<TailwindProvider>
-			<View className="bg-gray-100 flex-1">
-				<View className="flex-1 py-5 px-5">
+			<View className="bg-dmb flex-1 bg-dr">
+				<View className="flex-1 py-5 px-5 ">
 					{isPressed ? (
-						<Text className="px-3 text-3xl my-5 text-gray-700">
+						<Text className="px-3 text-3xl my-5 text-gray-400">
 							Hello there ! I will navigate you to the next screen.
 						</Text>
 					) : (
-						<Text className="px-3 text-3xl my-5 text-gray-700">
+						<Text className="px-3 text-3xl my-5 text-gray-400">
 							Press the button to speak.
 						</Text>
 					)}

@@ -8,9 +8,9 @@ const ArticleScreen = (props) => {
 
 	return (
 		<TailwindProvider>
-			<ScrollView className="p-2 mb-3 ">
+			<ScrollView className="p-2 pb-5 bg-dr">
 				<View>
-					<Text className="text-2xl my-3 text-gray-700 font-bold">
+					<Text className="text-2xl my-3 text-gray-400 font-bold">
 						{article.title}
 					</Text>
 				</View>
@@ -21,13 +21,13 @@ const ArticleScreen = (props) => {
 					/>
 				</View>
 				<View>
-					<Text className="font-bold text-gray-500 mb-3">{article.author}</Text>
+					<Text className="font-bold text-gray-700 mb-3">{article.author}</Text>
 				</View>
 				<View>
-					<Text className="text-lg font-bold text-gray-600 mb-2">
+					<Text className="text-lg font-bold text-gray-500 mb-2">
 						Summary :
 					</Text>
-					<Text className="text-gray-800">{article.summary}</Text>
+					<Text className="text-gray-400">{article.summary}</Text>
 					<OpenURLButton url={article.link}>Full Article...</OpenURLButton>
 				</View>
 			</ScrollView>

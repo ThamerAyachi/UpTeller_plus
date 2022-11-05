@@ -9,7 +9,7 @@ export default class VoiceButton extends React.Component {
 			<TailwindProvider>
 				<TouchableOpacity
 					onPress={this.props.onPress}
-					className="shadow rounded-full bg-white p-3 m-10"
+					className="shadow rounded-full bg-ldr p-3 m-10"
 				>
 					<Text className="text-center text-blue-500">
 						<Ionicons

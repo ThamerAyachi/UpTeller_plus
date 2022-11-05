@@ -7,7 +7,7 @@ export default function Card(props) {
 		<TailwindProvider>
 			<TouchableOpacity
 				onPress={props.onPress}
-				className="bg-white my-3 rounded-md overflow-hidden shadow"
+				className="bg-ldr my-3 rounded-md overflow-hidden shadow"
 			>
 				<Image
 					source={{
@@ -16,9 +16,9 @@ export default function Card(props) {
 					style={{ width: "auto", height: 200 }}
 				/>
 				<View className="p-2">
-					<Text className="text-gray-800 font-bold my-2">{props.author}</Text>
-					<Text className="text-gray-800 text-2xl mb-2">{props.title}</Text>
-					<Text className="text-gray-500 mb-2">{props.date}</Text>
+					<Text className="text-gray-400 font-bold my-2">{props.author}</Text>
+					<Text className="text-gray-400 text-2xl mb-2">{props.title}</Text>
+					<Text className="text-gray-700 mb-2">{props.date}</Text>
 				</View>
 			</TouchableOpacity>
 		</TailwindProvider>

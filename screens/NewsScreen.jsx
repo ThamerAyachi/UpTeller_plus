@@ -10,7 +10,7 @@ export default function NewsScreen(props) {
 	let newArticles = [];
 
 	articles.map((a, i) => {
-		if (i < 10) {
+		if (i < 20) {
 			newArticles.push(a);
 		}
 	});
@@ -27,10 +27,10 @@ export default function NewsScreen(props) {
 							</Text>
 						</View>
 						<View>
-							{newArticles.map((i) => {
+							{newArticles.map((i, index) => {
 								return (
 									<Card
-										key={i.id}
+										key={index}
 										img={i.media}
 										title={i.title}
 										author={i.author}

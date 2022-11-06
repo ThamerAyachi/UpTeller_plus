@@ -1,21 +1,47 @@
 import * as React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Alert } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import VoiceButton from "../components/VoiceButton";
 import * as Speech from "expo-speech";
+import Voice from "@react-native-voice/voice";
 
 export default function HomeScreen(props) {
 	const [isPressed, setIsPressed] = React.useState(false);
-	const [text, setText] = React.useState(
-		"Hello there ! I will navigate you to the next screen."
-	);
+	const [text, setText] = React.useState("");
 	const [thereData, setThereData] = React.useState(false);
-	const vocal = "react native";
+	let [results, setResults] = useState([]);
+
+	React.useEffect(() => {
+		Voice.onSpeechError = onSpeechError;
+		Voice.onSpeechResults = onSpeechResults;
+
+		return () => {
+			Voice.destroy().then(Voice.removeAllListeners);
+		};
+	}, []);
+
+	const startSpeechToText = async () => {
+		await Voice.start("en-US");
+	};
+
+	const stopSpeechToText = async () => {
+		await Voice.stop();
+		setThereData(true);
+	};
+
+	const onSpeechResults = (result) => {
+		setResults(result.value);
+	};
+
+	const onSpeechError = (error) => {
+		console.log(error);
+		Alert.alert(error);
+	};
 
 	const getData = async () => {
 		try {
 			const data = await fetch(
-				`https://api.newscatcherapi.com/v2/search?q=${vocal}`,
+				`https://api.newscatcherapi.com/v2/search?q=${results[0]}`,
 				{
 					headers: {
 						"x-api-key": "i5rUvEN5-QmGcXesk4aUSl1AMwFHBcXrIL5dDYQJ9Yw",
@@ -34,8 +60,8 @@ export default function HomeScreen(props) {
 		setIsPressed(!isPressed);
 
 		if (isPressed) {
-			setThereData(true);
-			if (vocal.includes("hello")) {
+			stopSpeechToText();
+			if (results[0].includes("hello") || results[0].includes("Hello")) {
 				Speech.speak("Hello there", { language: "en-US" });
 				Speech.speak("What can i help you with", { language: "en-US" });
 				setText("Hello there !\nWhat can I help you with ?");
@@ -49,6 +75,8 @@ export default function HomeScreen(props) {
 					props.navigation.navigate("News", { articles: await articles });
 				}, 1000);
 			}
+		} else {
+			startSpeechToText();
 		}
 	};
 

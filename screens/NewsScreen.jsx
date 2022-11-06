@@ -8,17 +8,19 @@ export default function NewsScreen(props) {
 	Speech.speak("That's what i can found", { language: "en-US" });
 	const { articles } = props.route.params;
 	let newArticles = [];
-	articles.map((a, i) => {
-		if (i < 20 && articles.length >= i) {
-			newArticles.push(a);
-		}
-	});
+	if (articles != undefined) {
+		articles.map((a, i) => {
+			if (i < 20 && articles.length >= i) {
+				newArticles.push(a);
+			}
+		});
+	}
 
 	return (
 		<TailwindProvider>
 			<ScrollView className="p-3 bg-dr">
 				{newArticles.length < 1 ? (
-					<Text className="text-gray-400">osber</Text>
+					<Text className="text-gray-400">There is no Articles.</Text>
 				) : (
 					<View className="mb-14">
 						<View className="">

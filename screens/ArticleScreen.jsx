@@ -21,7 +21,7 @@ const ArticleScreen = (props) => {
 					/>
 				</View>
 				<View>
-					<Text className="font-bold text-gray-700 mb-3">{article.author}</Text>
+					<Text className="font-bold text-gray-600 mb-3">{article.author}</Text>
 				</View>
 				<View>
 					<Text className="text-lg font-bold text-gray-500 mb-2">

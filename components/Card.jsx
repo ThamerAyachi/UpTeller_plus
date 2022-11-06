@@ -18,7 +18,7 @@ export default function Card(props) {
 				<View className="p-2">
 					<Text className="text-gray-400 font-bold my-2">{props.author}</Text>
 					<Text className="text-gray-400 text-2xl mb-2">{props.title}</Text>
-					<Text className="text-gray-700 mb-2">{props.date}</Text>
+					<Text className="text-gray-600 mb-2">{props.date}</Text>
 				</View>
 			</TouchableOpacity>
 		</TailwindProvider>

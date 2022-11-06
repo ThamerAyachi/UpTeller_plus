@@ -5,10 +5,17 @@ import Card from "../components/Card";
 import * as Speech from "expo-speech";
 
 export default function NewsScreen(props) {
-	Speech.speak("That's what i can found", { language: "en-US" });
 	const { articles } = props.route.params;
+	const textResult = ["Here's some information", "Here's what I found"];
+	const text = textResult[Math.floor(Math.random() * 1) + 1];
 	let newArticles = [];
-	if (articles != undefined) {
+	if (articles[0]) {
+		setTimeout(() => {
+			Speech.speak(text, {
+				language: "en-US",
+			});
+		}, 500);
+
 		articles.map((a, i) => {
 			if (i < 20 && articles.length >= i) {
 				newArticles.push(a);
@@ -20,13 +27,15 @@ export default function NewsScreen(props) {
 		<TailwindProvider>
 			<ScrollView className="p-3 bg-dr">
 				{newArticles.length < 1 ? (
-					<Text className="text-gray-400">There is no Articles.</Text>
+					<View className="my-10">
+						<Text className="text-gray-400 text-center text-lg">
+							There is no Articles.
+						</Text>
+					</View>
 				) : (
 					<View className="mb-14">
 						<View className="">
-							<Text className="text-2xl py-5 text-gray-400">
-								That's what i can found
-							</Text>
+							<Text className="text-2xl py-5 text-gray-400">{text}</Text>
 						</View>
 						<View>
 							{newArticles.map((i, index) => {

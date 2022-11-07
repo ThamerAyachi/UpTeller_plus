@@ -10,8 +10,8 @@ export default function HomeScreen(props) {
 	const [isPressed, setIsPressed] = React.useState(false);
 	const [text, setText] = React.useState("");
 	const [thereData, setThereData] = React.useState(false);
-	let [results, setResults] = useState([]);
-	let [started, setStarted] = useState(false);
+	let [results, setResults] = React.useState([]);
+	let [started, setStarted] = React.useState(false);
 
 	React.useEffect(() => {
 		Voice.onSpeechError = onSpeechError;

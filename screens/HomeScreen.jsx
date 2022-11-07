@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, View, Image, Alert } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import VoiceButton from "../components/VoiceButton";
+import StopVoiceButton from "../components/StopVoiceButton";
 import * as Speech from "expo-speech";
 import Voice from "@react-native-voice/voice";
 
@@ -10,6 +11,7 @@ export default function HomeScreen(props) {
 	const [text, setText] = React.useState("");
 	const [thereData, setThereData] = React.useState(false);
 	let [results, setResults] = useState([]);
+	let [started, setStarted] = useState(false);
 
 	React.useEffect(() => {
 		Voice.onSpeechError = onSpeechError;
@@ -22,11 +24,27 @@ export default function HomeScreen(props) {
 
 	const startSpeechToText = async () => {
 		await Voice.start("en-US");
+		setStarted(true);
 	};
 
 	const stopSpeechToText = async () => {
 		await Voice.stop();
+		setStarted(false);
 		setThereData(true);
+		if (results[0].includes("hello") || results[0].includes("Hello")) {
+			Speech.speak("Hello there", { language: "en-US" });
+			Speech.speak("What can i help you with", { language: "en-US" });
+			setText("Hello there !\nWhat can I help you with ?");
+		} else {
+			Speech.speak("i try to search", { language: "en-US" });
+			setText("Loading ...");
+			const articles = await getData();
+			setTimeout(async () => {
+				setIsPressed(false);
+				setThereData(false);
+				props.navigation.navigate("News", { articles: await articles });
+			}, 1000);
+		}
 	};
 
 	const onSpeechResults = (result) => {
@@ -35,7 +53,6 @@ export default function HomeScreen(props) {
 
 	const onSpeechError = (error) => {
 		console.log(error);
-		Alert.alert(error);
 	};
 
 	const getData = async () => {
@@ -53,30 +70,6 @@ export default function HomeScreen(props) {
 			return ars;
 		} catch (er) {
 			console.log(er);
-		}
-	};
-
-	const clicked = async () => {
-		setIsPressed(!isPressed);
-
-		if (isPressed) {
-			stopSpeechToText();
-			if (results[0].includes("hello") || results[0].includes("Hello")) {
-				Speech.speak("Hello there", { language: "en-US" });
-				Speech.speak("What can i help you with", { language: "en-US" });
-				setText("Hello there !\nWhat can I help you with ?");
-			} else {
-				Speech.speak("i try to search", { language: "en-US" });
-				setText("Loading ...");
-				const articles = await getData();
-				setTimeout(async () => {
-					setIsPressed(false);
-					setThereData(false);
-					props.navigation.navigate("News", { articles: await articles });
-				}, 1000);
-			}
-		} else {
-			startSpeechToText();
 		}
 	};
 
@@ -106,7 +99,10 @@ export default function HomeScreen(props) {
 					)}
 				</View>
 				<View className="flex-1 justify-end items-center">
-					<VoiceButton onPress={clicked} icon={!isPressed} />
+					{!started ? (
+						<VoiceButton onPress={startSpeechToText} icon={!isPressed} />
+					) : undefined}
+					{started ? <StopVoiceButton onPress={stopSpeechToText} /> : undefined}
 				</View>
 			</View>
 		</TailwindProvider>

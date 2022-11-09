@@ -9,6 +9,9 @@
 	<img src="./assets/sc1.jpg" style="width:200px" />
 </div>
 
+### This is a Gif
+<img src="./assets/gifDemo.gif" style="width:200px" />
+
 ### Description
 <p>
 When you open the app you will notice the microphone icon in the bottom of the screen, 
